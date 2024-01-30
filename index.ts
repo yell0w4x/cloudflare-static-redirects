@@ -7,6 +7,10 @@ async function getRedirects(staticContent) {
     const realKey = assetManifest['_redirects'];
     const redirectStr = realKey && await staticContent.get(realKey);
 
+    if (!redirectStr) {
+        return {};
+    }
+
     let result = {};
 
     for (let s of redirectStr.split('\n')) {
